@@ -2,7 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnect
 metadata:
   name: kafka-connect-cluster
-  namespace: openshift-operators
+  namespace: mateusz-test-os
 spec:
   replicas: 1
 

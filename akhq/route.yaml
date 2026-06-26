@@ -2,7 +2,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: akhq
-  namespace: openshift-operators
+  namespace: mateusz-test-os
 
 spec:
   to:

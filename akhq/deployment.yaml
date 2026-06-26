@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: akhq
-  namespace: openshift-operators
+  namespace: mateusz-test-os
   annotations:
     link.argocd.argoproj.io/external-link: "https://akhq-openshift-operators.apps-crc.testing"
 

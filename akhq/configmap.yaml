@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: akhq-config
-  namespace: openshift-operators
+  namespace: mateusz-test-os
 
 data:
   application.yml: |
