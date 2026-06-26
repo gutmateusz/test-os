@@ -1,0 +1,26 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: kafka-connect-cluster
+  namespace: openshift-operators
+spec:
+  replicas: 1
+
+  bootstrapServers: kafka-cluster-kafka-bootstrap:9093
+
+  tls:
+    trustedCertificates:
+      - secretName: kafka-cluster-cluster-ca-cert
+        pattern: "*.crt"
+
+  config:
+    config.storage.replication.factor: 1
+    offset.storage.replication.factor: 1
+    status.storage.replication.factor: 1
+
+  configStorageTopic: kafkay-connect-configs
+  offsetStorageTopic: kafka-connect-offsets
+  statusStorageTopic: kafka-connect-status
+
+  groupId: kafka-connect-group
+  version: 4.2.0

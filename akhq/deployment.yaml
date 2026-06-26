@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akhq
+  namespace: openshift-operators
+  annotations:
+    link.argocd.argoproj.io/external-link: "https://akhq-openshift-operators.apps-crc.testing"
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: akhq
+
+  template:
+    metadata:
+      labels:
+        app: akhq
+
+    spec:
+      containers:
+        - name: akhq
+          image: ghcr.io/tchiotludo/akhq:0.25.0
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8080
+              name: http
+
+          env:
+            - name: MICRONAUT_CONFIG_FILES
+              value: /app/config/application.yml
+
+          volumeMounts:
+            - name: config
+              mountPath: /app/config
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+
+      volumes:
+        - name: config
+          configMap:
+            name: akhq-config

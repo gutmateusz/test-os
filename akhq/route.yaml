@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: akhq
+  namespace: openshift-operators
+
+spec:
+  to:
+    kind: Service
+    name: akhq
+  port:
+    targetPort: http
