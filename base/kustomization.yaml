@@ -2,5 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - akhq
-  - kafka
+  - akhq/configmap.yaml
+  - akhq/deployment.yaml
+  - akhq/service.yaml
+  - akhq/route.yaml
+  - kafka/kafka-kafka-cluster.yaml
+  - kafka/kafkanodepool-kafka-pool.yaml
+  - kafka/kafkaconnect-kafka-connect-cluster.yaml
+  - kafka/topics/mgtest.yaml
